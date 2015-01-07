@@ -1,0 +1,43 @@
+main{
+	color: #000;
+	margin: 50px 0px;
+}
+main form{
+	width: 382px;
+	margin: 10px auto;
+	padding: 30px 0;
+	border: dotted 1px #000;
+	padding: 20px;
+	border-radius: 5px;
+}
+main form lavel{
+	width: 130px;
+	float: left;
+	text-align: center;
+	margin: 3px 0px;
+	font-family: 'hannari';
+	text-rendering: optimizeLegibility;
+}
+#ck_box{
+	text-align: left;
+	margin: 14px 0 0 -100px;
+}
+#dm_span{
+	font-size: 0.9em;
+	width: 240px;
+	clear: both;
+	margin:0px 0 0 120px;
+}
+main form input{
+	width: 200px;
+	float: left;
+	padding: 2px;
+	margin: 10px 0px;
+}
+#bt_box{
+	width: 200px;
+	margin: 0 auto;
+}
+.button01{
+	margin: 10px 0 10px 10px;
+}

@@ -1,0 +1,56 @@
+/* modal.css */
+.modal_visible{
+  visibility: visible !important;
+}
+
+.modal_hidden{
+  visibility: visible !important;
+}
+
+#modal{
+  display:none;
+  position:absolute;
+  width:90%;
+  background: #fff;
+  top: 5%;
+  left: 5%;
+  border: solid 1px #ccc;
+  -moz-border-radius: 4px;
+  -webkit-border-radius: 4px;
+  border-radius: 4px;
+  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  padding: 10px;
+  //overflow: auto;
+}
+#modal_back{
+  display:none;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+}
+#modal a.close{
+  display: block;
+  position:absolute;
+  right:10px;
+  top:10px;
+  background: #000;
+  color: #fff;
+  width: 20px;
+  height: 10px;
+  padding: 5px 20px 20px 5px;
+  -moz-border-radius: 2px;
+  -webkit-border-radius: 2px;
+  border-radius: 2px;
+  text-decoration: none;
+  text-align: center;
+  
+  
+}
+.closeButton{
+	width: 100%;
+	height: 100%;
+}

@@ -1,0 +1,13 @@
+/* cast_shinki.css */
+main{
+	color: #000;
+	margin: 50px 0px;
+}
+main span{
+	display: block;
+	text-align: center;
+	font-family: 'hannari';
+}
+.button01{
+	margin: 10px 0 10px 10px;
+}

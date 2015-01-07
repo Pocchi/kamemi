@@ -1,0 +1,189 @@
+/* IMPORT RESET */
+@import url("reset.css");
+
+/* IMPORT 12 COLUMN RESPONSIVE GS */
+@import url("responsive.gs.12col.css");
+
+
+/*	EXAMPLE STYLES */
+body {
+	font-family: sans-serif;
+	color: white;
+}
+
+header {
+	line-height: 1em;
+	text-align: center;
+	background: #333;
+	font-family: 'hannari';
+}
+#kamemilogo{
+	margin: 10px 0px 15px 40px;
+	height: 90px;
+	float: left;
+}
+@font-face {
+    font-family: 'hannari';
+    src: url('../font/Hannari.otf');
+}
+#ulcopy span{
+	text-rendering: optimizeLegibility;
+	padding: 10px 10px 15px 20px;
+}
+#ulcopy{
+	float: left;
+}
+header ul{
+	position: relative;
+}
+header ul li{
+	float: left;
+	margin:  10px 10px  10px 10px;
+}
+header ul li a{
+	text-decoration: none;
+	color: #cab274;
+	font-family: 'hannari';
+	text-shadow: 1px 1px 1px #444;
+	text-rendering: optimizeLegibility;
+	font-size: 1.2em;
+}
+
+header ul li a:hover{
+	color: #ddd;
+}
+
+
+article {
+}
+
+#text1{
+	height: 300px;
+	background: #001111;
+	
+}
+
+#text1 span{
+	display: block;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	-o-box-sizing: border-box;
+	box-sizing: border-box;
+	font-family: 'hannari';
+	font-size: 1.2em;
+}
+#text1 #te1{
+	margin: 89px 100px 15px -40px;
+	position: relative;
+	z-index: 100;
+
+}
+#text1 #te2{
+	display: block;
+	width: 250px;
+	letter-spacing: 4px;
+	position: relative;
+	z-index: 100;
+	margin: 0px 100px 15px 80px;
+	line-height: 1.5em;
+}
+#text1 img{
+	margin: 60px 10px 10px 80px;
+	height: 60px;
+	position: relative;
+	z-index: 10;
+}
+#text1 a{
+	margin: 0 0 0 60%;
+	letter-spacing: 1px;
+	color: #978041;
+	font-size: 0.9em;
+}
+#text1 a:hover{
+	color: #ddd;
+}
+aside {
+}
+#topimage{
+
+}
+#topimage img{
+	width: 100%;
+}
+#sub{
+	color: #000;
+}
+h1{
+	width: 80px;
+	padding: 12px 0 15px 0;
+	display: block;
+	background: #f00;
+	text-align: center;
+	line-height: 1.2em;
+	letter-spacing: 2px;
+	font-size: 1.4em;
+	
+	font-family: 'hannari';
+	color: #fff;
+	text-shadow: 1px 1px 1px rgba(0,0,0,0.5);
+	position: relative;
+	z-index: 100;
+	border: solid 1px #000;
+	
+}
+.dammy_box{
+	width: 100px;
+	height: 100px;
+	background: #fff;
+	position: relative;
+	z-index: 10;
+	margin: -82px 0 0 -2px;
+}
+#dm{
+	
+	background: #ddd;
+	
+}
+.box1{
+	height: 300px;
+	background: #ccc;
+	position: relative;
+	z-index: 1;
+	margin: 10px 0 0 0;
+	
+}
+.box2{
+	background: #aaa;
+}
+footer {
+	line-height: 1.4em;
+	text-align: center;
+	background: #BBB;
+	color: #eee;
+}
+
+/* 上書き */
+@media ( min-width : 768px ) {
+	
+	.gutters .col {
+		margin-left: 0%;
+	}
+	
+	.gutters .col:first-child { 
+		margin-left: 0; 
+	}
+}
+/*	COLUMN WIDTH ON DISPLAYS +768px 
+	You might need to play with media queries here to suite your design. */
+@media ( min-width : 768px ) {
+	.span_13 { width: 40%; }
+	.gutters .span_13 { width: 40%; }
+	.span_14 { width: 60%; }
+	.gutters .span_14 { width: 60%; }
+	
+	.span_15 { width: 30%; }
+	.gutters .span_15 { width: 30%; }
+	.span_16 { width: 70%; }
+	.gutters .span_16 { width: 70%; }
+}
+
