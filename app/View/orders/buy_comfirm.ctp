@@ -93,8 +93,8 @@ echo $this->Form->button('請求先を入力する',array('type'=>'button','id'=
 				<p>こちらで入力されたメールアドレスに請求が届きます。</p>
 
 				<?php
-echo $this->Form->input('f_order_mail',array('label' => 'メールアドレス','value'=>''));
-						echo $this->Form->input('f_order_mail_confirm',array('label' => 'メールアドレス(再)','value'=>''));
+echo $this->Form->input('f_order_mail',array('label' => 'メールアドレス','value'=>$send['f_send_mail']));
+echo $this->Form->input('f_order_mail_confirm',array('label' => 'メールアドレス(再)','value'=>$send['f_send_mail']));
 						echo $this->Form->button('リセット',array('type'=>'button','id'=>'reset2'));
 echo $this->Form->end('購入確定する');
 				?>

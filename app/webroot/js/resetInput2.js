@@ -1,7 +1,7 @@
-//resetInput.js
+//resetInput2.js
 $(function(){
-	var resetArray=['sendFCustName','sendFSendTel','sendFSendPost','sendFSendAddress','sendFSendMail','check_'];
-	var comArray=['com_name','com_tel','com_post','com_address','com_mail','com_dm'];
+	var resetArray=['usersFCustName','usersFCustTel','usersFCustPost','usersFCustAddress','usersFCustMail','usersFCustPass','usersFCustDm_'];
+	var comArray=['com_name','com_tel','com_post','com_address','com_mail','com_pass','com_dm'];
 	var resetArray2=['sendFOrderMail','sendFOrderMail_confirm'];
 	var comValue=new Array();
 	$('#reset').click(function() {
@@ -20,14 +20,14 @@ $(function(){
 		for(var i=0;i<resetArray.length;i++){
 			comValue[i]=$('#'+resetArray[i]).val();
 			$('#'+comArray[i]).html(comValue[i]);
-			if(i==5){
-				if ($("#check").is(':checked')) {
-					$('#check_').val("1");
-					
+			console.log(comArray[i]+":"+comValue[i]);
+			if(i==6){
+				if ($("#usersFCustDm").is(':checked')) {
+					$('#usersFCustDm_').val("1");
 				} else {
-					$('#check_').val("0");
+					$('#usersFCustDm_').val("0");
 				}
-				var check=$("#check_").val();
+				var check=$("#usersFCustDm_").val();
 				if(check=="1"){
 					$('#'+comArray[i]).html("希望する");
 					console.log("1");
@@ -46,12 +46,13 @@ $(function(){
 		//alert("modal");
 		modal_close();
 	});
-	$('#check').change(function(){
+	
+	$('#usersFCustDm').change(function(){
 	if ($(this).is(':checked')) {
-		$('#check_').val("1");
+		$('#usersFCustDm_').val("1");
 		
 	} else {
-		$('#check_').val("0");
+		$('#usersFCustDm_').val("0");
 	}
 	});
 });

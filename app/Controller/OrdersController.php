@@ -76,6 +76,7 @@ class OrdersController extends AppController{
 						'f_send_post'=>$sendArray['f_send_post'],
 						'f_send_address'=>$sendArray['f_send_address'],
 						'f_send_tel'=>$sendArray['f_send_tel'],
+						'f_send_mail'=>$sendArray['f_send_mail'],
 						'f_cust_id'=>$sendArray['f_cust_id'],
 						'f_send_dm'=>$sendArray['f_send_dm'],
 					)

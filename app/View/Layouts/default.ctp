@@ -51,10 +51,10 @@ echo $this->Html->script( 'jquery-1.9.1.min', array('inline'=> true));
 				
 					<span>ねぼすけホシガメブランド</span>
 					<ul id="navi">
-						<li><?php echo $this->Html->link('トップ',array('controller'=>'users','action'=>'index')); ?></li>
+						<li><?php echo $this->Html->link('トップ',array('controller'=>'Users','action'=>'index')); ?></li>
 						<li><?php echo $this->Html->link('商品',array('controller'=>'goods','action'=>'goods_list')); ?></li>
 						<li><?php echo $this->Html->link($loglink,array('controller'=>'users','action'=>$logaction)); ?></li>
-						<li><?php echo $this->Html->link('会員',array('controller'=>'users','action'=>'#')); ?></li>
+						<li><?php echo $this->Html->link($menberlink,array('controller'=>'users','action'=>$menberaction)); ?></li>
 						<li><?php echo $this->Html->link('カート',array('controller'=>'carts','action'=>'cart')); ?></li>
 					</ul>
 				</div>
@@ -67,6 +67,7 @@ echo $this->Html->script( 'jquery-1.9.1.min', array('inline'=> true));
 
 			<?php echo $this->Session->flash(); ?>
 			<?php echo $this->fetch('content'); ?>
+			<?php echo $histry; ?>
 		</div>
 			<footer role="contentinfo" class="row">
 

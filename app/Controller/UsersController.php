@@ -3,7 +3,7 @@
 App::uses('AppController','Controller');
 App::import('Vendor','chainfunc');
 class UsersController extends AppController{
-	var $uses = array('Good','Goods_img','Order','Cart','User');
+	var $uses = array('Good','Goods_img','Order','Cart','User','Send','Orders_detail');
 	public $components = array('Page');
 	var $name = 'Users';
 	//	var $uses = array('Kamemi', 'login');
@@ -96,4 +96,171 @@ class UsersController extends AppController{
 		$this->Session->setFlash('ログアウトしました', 'default', array('class' => 'flash_login'));
 		$this->redirect('/users/index');
 	}
+	public function menber_input(){
+		//新規会員登録
+		//ゲストIDが発行されていない
+		//value初期化
+		$useArray=array();
+		for($i=0;$i<8;$i++){
+			$useArray[$i]="";
+		}
+		$useArray[5]='0';
+		//
+		if($this->Session->check('user')){
+			$inputId=$this->Session->read('user.userId');
+			$userState=$this->Session->read('user.userState');
+			//send問い合せ
+			//if(isset($this->request->data['send_input'])){
+				//if($this->request->data['send_input']==true){
+					$value=$this->Send->find(
+						'first',
+						array('conditions'=>array(
+							'and'=>array(
+								'f_cust_id'=>$inputId
+							)
+						)));
+					//print_r($value);
+					$useArray[0]=$value["Send"]["f_send_name"];
+					$useArray[1]=$value["Send"]["f_send_tel"];
+					$useArray[2]=$value["Send"]["f_send_post"];
+			$useArray[3]=$value["Send"]["f_send_address"];
+			$useArray[4]=$value["Send"]["f_send_mail"];
+			$useArray[5]=$value["Send"]["f_send_dm"];
+			
+
+				//}
+			//}
+		}else{
+			//連番取得(ユーザID)
+			$nextid=null;
+			$countid=$this->User->findLastId('f_cust_id','users','User');
+			foreach ($countid as $id):
+			$previd=$id['User']['f_cust_id'];
+			endforeach;
+			$nextUserId=chainfunc($previd);
+			//連番取得ここまで
+			$inputId=$nextUserId;
+		}
+		//valueセット
+		$this->set("inputId",$inputId);
+		$this->set("useArray",$useArray);
+		
+	}
+	public function menber_complete(){
+		if(isset($this->request->data['users'])){
+			//アドレス、パスワード受け取り
+			$userArray=$this->request->data;
+			//print_r($userArray);
+			//ゲスト発行済みかどうか
+			if($this->Session->check('user')){
+			//発行済み(alter)
+				$user=$this->User->save($this->request->data['users']);
+			}else{
+			//新規(create)
+				$this->User->create();
+				$user=$this->User->save(
+					array(
+						'User'=>array(
+							'f_cust_id'=>$userArray['users']['f_cust_id'],
+							'f_cust_name'=>$userArray['users']['f_cust_name'],
+							'f_cust_tel'=>$userArray['users']['f_cust_tel'],
+							'f_cust_post'=>$userArray['users']['f_cust_post'],
+							'f_cust_address'=>$userArray['users']['f_cust_address'],
+							'f_cust_mail'=>$userArray['users']['f_cust_mail'],
+							'f_cust_dm'=>$userArray['users']['f_cust_dm'],
+							'f_cust_pass'=>$userArray['users']['f_cust_pass'],
+							'f_cust_flag'=>'customer'
+						)
+					)
+				);
+			}
+			if($user!==false){
+				//セッション埋め込み
+				$this->Session->write(
+					'user',
+					array('userId'=>$userArray['users']['f_cust_id'],
+						  'userName'=>$userArray['users']['f_cust_name'],
+						  'userState'=>'customer'
+						 )
+				);
+
+
+				$this->Session->setFlash('登録完了しました', 'default', array('class' => 'flash_login'));
+				$this->redirect('/users/index');
+			}
+		}
+	}
+	public function menber(){
+		$userId=$this->Session->read('user.userId');
+		//
+		//購入履歴処理
+		//
+		$historyArray=$this->Orders_detail->query(
+			'select
+			 orders_details.f_goods_id as "商品ID",
+			 goods.f_goods_name as "商品名",
+			 orders_details.f_order_detail_price as "価格",
+			 a_orders.f_order_datetime as "注文日時"
+			 from
+			 orders_details,goods,a_orders
+			 where
+			 goods.f_goods_id=orders_details.f_goods_id
+			 and
+			 a_orders.f_order_id=orders_details.f_order_id
+			 and
+			 a_orders.f_cust_id="'.$userId.'"'
+		);
+		//print_r($historyArray);
+		$this->set('history',$historyArray);
+		//img名取得
+		$imgName=array();
+		foreach($historyArray as $history):
+			$goodid=$history['orders_details']['商品ID'];
+		//print "<br />";
+		//print $goodid;
+		$imgName[]=$this->Goods_img->find(
+			'first',
+			array(
+				'fields'=>array('f_goods_img_name'),
+				'conditions'=>array(
+				'and'=>array(
+					'f_goods_id'=>$goodid,
+				)
+			))
+		);
+		endforeach;
+		$this->set("imgArray",$imgName);
+		//
+		//会員情報処理
+		//
+
+		$userArray=$this->User->find(
+			'first',
+			array(
+				'conditions'=>array(
+					'and'=>array(
+						'f_cust_id'=>$userId,
+					)
+				))
+		);
+		//DM表示処理
+		$dm=$userArray["User"]["f_cust_dm"];
+		if($dm=="1"){
+			$userArray["User"]["f_cust_dm"]="希望する";
+		}else{
+			$userArray["User"]["f_cust_dm"]="希望しない";
+		}
+		//パスワード変換
+		$pass=null;
+		$count=strlen($userArray["User"]["f_cust_pass"]);
+		print $count;
+		for($i=0;$i<$count;$i++){
+			$pass.="*";
+		}
+		print $pass;
+		$userArray["User"]["f_cust_pass"]=$pass;
+		print_r($userArray);
+		$this->set("user",$userArray);
+	}
+	
 }

@@ -43,6 +43,8 @@ class AppController extends Controller {
 		$userName="ゲスト";
 		$loglink="ログイン";
 		$logaction="login";
+		$menberlink="会員登録";
+		$menberaction="menber_input";
 		/* 共通処理を記述 */
 		//userセッション確認
 		//セッションに値が設定されているか？
@@ -53,12 +55,16 @@ class AppController extends Controller {
 			if($userState!='gest'){
 				$loglink="ログアウト";
 				$logaction="logout";
+				$menberlink="会員ページ";
+				$menberaction="menber";
 			}
 		}
 		$this->set('userId',$userId);
 		$this->set('userName',$userName);
 		$this->set('loglink',$loglink);
 		$this->set('logaction',$logaction);
+		$this->set('menberlink',$menberlink);
+		$this->set('menberaction',$menberaction);
 		
 		//
 		//pageurl取得
@@ -80,6 +86,17 @@ class AppController extends Controller {
 			$this->Session->write('backUrl',$backUrl);
 
 		}
-		
+		//print($_SERVER["REQUEST_URI"]);
+		$nowUrl=$_SERVER["REQUEST_URI"];
+		$urlArray=explode("/",$nowUrl);
+		//print_r($urlArray);
+		$urlCount=count($urlArray);
+		//print $urlArray[$urlCount-1];
+		$histry="";
+		$lastUrl=$urlArray[$urlCount-1];
+		if($lastUrl !="Users"&&$lastUrl!="index"){
+			$histry="<a href='javascript:history.back();' class='histry'>前のページへ戻る</a>";
+		}
+		$this->set("histry",$histry);
 	}
 }

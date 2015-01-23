@@ -19,8 +19,7 @@ echo $this->Form->input('f_cust_pass',array('label' => 'パスワード','type'=
 			?>
 			</ul>
 <?php }
-			
-			echo $this->Html->link('[ログアウト]','users/logout')?>
+		?>
 				<!--<div id="dm_span">パスワードを忘れたら</div>-->
 
 

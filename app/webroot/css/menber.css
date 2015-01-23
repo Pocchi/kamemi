@@ -1,0 +1,173 @@
+.listbox{
+	width: 90%;
+	margin: 10px auto;
+	border: 1px solid #000;
+}
+.listimg{
+}
+.listimg img{
+	width: 100%;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+}
+.listtxt ul li:first-child{
+	background: #000;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+	over-flow: hidden;
+	padding: 10px;
+	color: #fff;
+	margin: 0 0 2px 0;
+}
+.listtxt ul li{
+	color: #333;
+	padding: 5px 10px;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+	over-flow: hidden;
+}
+.listtxt ul li a{
+	color: #888;
+}
+#wrapper{
+	padding: 0px;
+	margin: 0 0 15px 0;
+}
+
+#leftin{
+	margin: 10px 0 0 0;
+	border: #333 1px solid;
+}
+#left img{
+	text-align: center;
+	width: 80px;
+	margin: 0 auto 0 auto;
+	display: block;
+	position: relative;
+	top: 180px;
+}
+#leftin ul li:first-child{
+	background: #333;
+	padding: 5px 10px;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+	border-bottom: dotted 0px #ccc;
+	display: block;
+}
+
+#leftin ul li:last-child{
+
+	border-bottom: dotted 0px #ccc;
+}
+
+#leftin ul li{
+	color: #777;
+	padding: 5px 10px 10px 10px;
+	border-bottom: dotted 1px #ccc;
+}
+
+#leftin ul li a{
+	width: 100%;
+	padding: 5px 0px 10px 0px;
+	color: #777;
+
+}
+ul li .kategoryComment{
+	font-size: 0.6em;
+	color: #555;
+}
+@media ( max-width : 769px ) {
+	/*iphone*/
+	#sub div{
+		color: #000;
+		border-bottom: dotted 1px #000;
+	}
+
+	#left img{
+		width: 0;
+		height: 0;
+		display: hidden;
+		visibility: hidden;
+	}
+}
+@media ( min-width : 768px ) {
+	/*pc*/
+	#sub div{
+		height: 300px;
+		color: #000;
+		border-right: dotted 2px #000;
+	}
+}
+
+/* 上書き */
+@media ( min-width : 768px ) {
+
+	.gutters .col {
+		margin-left: 0%;
+	}
+
+	.gutters .col:first-child { 
+		margin-left: 0; 
+	}
+}
+/*	COLUMN WIDTH ON DISPLAYS +768px 
+You might need to play with media queries here to suite your design. */
+@media ( min-width : 768px ) {
+	.span_13 { width: 40%; }
+	.gutters .span_13 { width: 40%; }
+	.span_14 { width: 60%; }
+	.gutters .span_14 { width: 60%; }
+
+	.span_15 { width: 30%; }
+	.gutters .span_15 { width: 30%; }
+
+	.span_16 { width: 70%; }
+	.gutters .span_16 { width: 70%; }
+
+	.span_17 { width: 30%; }
+	.gutters .span_17 { width: 30%; }
+	.span_18 { width: 40%; }
+	.gutters .span_18 { width: 420%; }
+	.span_19 { width: 20%; }
+	.gutters .span_19 { width: 20%; }
+	.span_20 { width: 80%; }
+	.gutters .span_20 { width: 80%; }
+}
+/* button */
+#title{
+	background-image: url(../images/teep.png);
+	background-repeat: none;
+	width: 260px;
+	color: #000;
+	margin: 5px auto;
+	text-align: center;
+	letter-spacing: 4px;
+	padding: 10px 0px;
+	font-family: 'hannari';
+	font-size: 1em;
+	transform: rotate(-2deg);
+}
+#title span{
+	display: block;
+	transform: rotate(2deg);
+	margin: 0 0 0 40px;
+}
+/* menber.css */
+#menber{
+	background: #cc0;
+	cursor: pointer;
+}
+#history{
+	cursor: pointer;
+}
+#right_menber{
+	background: #ccc;
+}
+#right_buy_history{
+	background: #cc0;
+	display: none;
+}
