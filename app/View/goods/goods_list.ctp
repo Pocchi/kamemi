@@ -1,6 +1,7 @@
-<?php //echo $this->Html->script(array('script1', 'script2'), array('inline'=>false)); ?>
+
 <?php echo $this->Html->css('goods_list', array( 'inline' => false)); ?>
 <!-- include end -->
+
 	<div id="title"><span>商品リスト</span></div>
 	<!-- カラムスタート -->
 	<main id="wrapper" class="row">

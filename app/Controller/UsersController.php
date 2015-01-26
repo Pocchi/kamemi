@@ -191,76 +191,89 @@ class UsersController extends AppController{
 		}
 	}
 	public function menber(){
+		//
+		//ゲストかどうか
+		//
 		$userId=$this->Session->read('user.userId');
-		//
-		//購入履歴処理
-		//
-		$historyArray=$this->Orders_detail->query(
-			'select
-			 orders_details.f_goods_id as "商品ID",
-			 goods.f_goods_name as "商品名",
-			 orders_details.f_order_detail_price as "価格",
-			 a_orders.f_order_datetime as "注文日時"
-			 from
-			 orders_details,goods,a_orders
-			 where
-			 goods.f_goods_id=orders_details.f_goods_id
-			 and
-			 a_orders.f_order_id=orders_details.f_order_id
-			 and
-			 a_orders.f_cust_id="'.$userId.'"'
-		);
-		//print_r($historyArray);
-		$this->set('history',$historyArray);
-		//img名取得
-		$imgName=array();
-		foreach($historyArray as $history):
-			$goodid=$history['orders_details']['商品ID'];
-		//print "<br />";
-		//print $goodid;
-		$imgName[]=$this->Goods_img->find(
-			'first',
-			array(
-				'fields'=>array('f_goods_img_name'),
-				'conditions'=>array(
-				'and'=>array(
-					'f_goods_id'=>$goodid,
-				)
-			))
-		);
-		endforeach;
-		$this->set("imgArray",$imgName);
-		//
-		//会員情報処理
-		//
-
-		$userArray=$this->User->find(
-			'first',
-			array(
-				'conditions'=>array(
+		$userName=$this->Session->read('user.userName');
+		
+			
+		if(isset($userName)&&$userName!="ゲスト"){
+			
+			//
+			//購入履歴処理
+			//
+			$historyArray=$this->Orders_detail->query(
+				'select
+				 orders_details.f_goods_id as "商品ID",
+				 goods.f_goods_name as "商品名",
+				 orders_details.f_order_detail_price as "価格",
+				 a_orders.f_order_datetime as "注文日時"
+				 from
+				 orders_details,goods,a_orders
+				 where
+				 goods.f_goods_id=orders_details.f_goods_id
+				 and
+				 a_orders.f_order_id=orders_details.f_order_id
+				 and
+				 a_orders.f_cust_id="'.$userId.'"'
+			);
+			//print_r($historyArray);
+			$this->set('history',$historyArray);
+			//img名取得
+			$imgName=array();
+			foreach($historyArray as $history):
+				$goodid=$history['orders_details']['商品ID'];
+			//print "<br />";
+			//print $goodid;
+			$imgName[]=$this->Goods_img->find(
+				'first',
+				array(
+					'fields'=>array('f_goods_img_name'),
+					'conditions'=>array(
 					'and'=>array(
-						'f_cust_id'=>$userId,
+						'f_goods_id'=>$goodid,
 					)
 				))
-		);
-		//DM表示処理
-		$dm=$userArray["User"]["f_cust_dm"];
-		if($dm=="1"){
-			$userArray["User"]["f_cust_dm"]="希望する";
+			);
+			endforeach;
+			$this->set("imgArray",$imgName);
+			//
+			//会員情報処理
+			//
+
+			$userArray=$this->User->find(
+				'first',
+				array(
+					'conditions'=>array(
+						'and'=>array(
+							'f_cust_id'=>$userId,
+						)
+					))
+			);
+			//DM表示処理
+			$dm=$userArray["User"]["f_cust_dm"];
+			if($dm=="1"){
+				$userArray["User"]["f_cust_dm"]="希望する";
+			}else{
+				$userArray["User"]["f_cust_dm"]="希望しない";
+			}
+			//パスワード変換
+			$pass=null;
+			$count=strlen($userArray["User"]["f_cust_pass"]);
+			//print $count;
+			for($i=0;$i<$count;$i++){
+				$pass.="*";
+			}
+			//print $pass;
+			$userArray["User"]["f_cust_pass"]=$pass;
+			//print_r($userArray);
+			$this->set("user",$userArray);
 		}else{
-			$userArray["User"]["f_cust_dm"]="希望しない";
+			$nowUrl=$_SERVER["HTTP_HOST"] . $_SERVER["REQUEST_URI"];
+			$url=explode('kamemi',$nowUrl);
+			$urlnext=$url[0]."kamemi/Users";
+			die(header("Location:".$urlnext));
 		}
-		//パスワード変換
-		$pass=null;
-		$count=strlen($userArray["User"]["f_cust_pass"]);
-		print $count;
-		for($i=0;$i<$count;$i++){
-			$pass.="*";
-		}
-		print $pass;
-		$userArray["User"]["f_cust_pass"]=$pass;
-		print_r($userArray);
-		$this->set("user",$userArray);
 	}
-	
 }
