@@ -6,7 +6,7 @@
 		<main>
 <?php
 
-echo $this->Form->create('users', array('controller'=>'user','action'=>'menber_complete'));
+echo $this->Form->create('users', array('controller'=>'user','action'=>'menber_complete','class'=>'BootstrapForm'));
 echo $this->Form->input('f_cust_id',array('type'=>'hidden','value'=>$inputId));
 echo $this->Form->input('f_cust_name',array('label' => '名前','value'=>$useArray[0]));
 echo $this->Form->input('f_cust_tel',array('label' => '電話番号','value'=>$useArray[1]));

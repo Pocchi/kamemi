@@ -1,6 +1,9 @@
 <?php echo $this->Html->script('menber_tab', array('inline'=>false)); ?>
 <?php echo $this->Html->css('menber', array( 'inline' => false)); ?>
+<?php echo $this->Html->css('modal',array( 'inline' => false)); ?>
+
 <!-- include end -->
+
 <div id="title"><span>会員ページ</span></div>
 <!-- カラムスタート -->
 <main id="wrapper" class="row">
@@ -34,7 +37,7 @@
 			<dt>DM希望</dt>
 			<dd id="com_dm"><?php echo $user["User"]["f_cust_dm"]; ?></dd>
 		</dl>
-		
+		<? echo $this->Form->button('会員情報変更',array('type'=>'button','id'=>'mordal_open')); ?>
 	</div>
 	<div id="right_buy_history">
 		<h2>購入履歴</h2>
@@ -50,7 +53,6 @@
 			</div>
 			<div class="col span_14 listtxt">
 				<ul>
-					<li><?php echo $good['orders_details']['商品ID'] ?></li>
 					<li><?php echo $good['goods']['商品名'] ?></li>
 					<li><?php echo $good['orders_details']['価格']."円" ?></li>
 					<li><?php echo $good['a_orders']['注文日時'] ?></li>
@@ -78,10 +80,7 @@
 		<p>こちらで入力されたメールアドレスに請求が届きます。</p>
 
 		<?php
-echo $this->Form->input('f_order_mail',array('label' => 'メールアドレス','value'=>$send['f_send_mail']));
-echo $this->Form->input('f_order_mail_confirm',array('label' => 'メールアドレス(再)','value'=>$send['f_send_mail']));
-echo $this->Form->button('リセット',array('type'=>'button','id'=>'reset2'));
-echo $this->Form->end('購入確定する');
+
 		?>
 	</div>
 	<!--モーダルウインドウ End-->

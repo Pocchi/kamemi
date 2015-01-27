@@ -137,21 +137,3 @@ You might need to play with media queries here to suite your design. */
 	.gutters .span_20 { width: 80%; }
 }
 /* button */
-#title{
-	background-image: url(../images/teep.png);
-	background-repeat: none;
-	width: 260px;
-	color: #000;
-	margin: 5px auto;
-	text-align: center;
-	letter-spacing: 4px;
-	padding: 10px 0px;
-	font-family: 'hannari';
-	font-size: 1em;
-	transform: rotate(-2deg);
-}
-#title span{
-	display: block;
-	transform: rotate(2deg);
-	margin: 0 0 0 40px;
-}

@@ -31,6 +31,13 @@ App::uses('Controller', 'Controller');
  * @link		http://book.cakephp.org/2.0/en/controllers.html#the-app-controller
  */
 class AppController extends Controller {
+	public $helpers = array(
+		'Session',
+		'Html' => array('className' => 'TwitterBootstrap.BootstrapHtml'),
+		'Form' => array('className' => 'TwitterBootstrap.BootstrapForm'),
+		'Paginator' => array('className' => 'TwitterBootstrap.BootstrapPaginator'),
+	);
+	//public $layout = 'TwitterBootstrap.default';
 
 	//サニタイジング
 	function __sanitize() {
@@ -39,6 +46,19 @@ class AppController extends Controller {
 	}
 
 	public function beforeFilter() {
+        //bootstrap
+        $this->Session->setFlash(__('Alert notice message testing...'), 'alert', array(
+            'plugin' => 'TwitterBootstrap',
+        ), 'notice');
+        $this->Session->setFlash(__('Alert success message testing...'), 'alert', array(
+            'plugin' => 'TwitterBootstrap',
+            'class' => 'alert-success'
+        ), 'success');
+        $this->Session->setFlash(__('Alert error message testing...'), 'alert', array(
+            'plugin' => 'TwitterBootstrap',
+            'class' => 'alert-error'
+        ), 'error');
+        //
 		$userId="C000000000";
 		$userName="ゲスト";
 		$loglink="ログイン";
@@ -69,21 +89,27 @@ class AppController extends Controller {
 		//
 		//pageurl取得
 		$url=Router::url();
+		$now=$_SERVER["HTTP_HOST"] . $_SERVER["REQUEST_URI"];
+		//print $url;
 		$urlArray=explode('/',$url);
+		$urlNext=explode('kamemi',$now);
+		$Nexturl=$urlNext[0]."/kamemi/";
+		//print_r($urlNext);
 		$urlCount=count($urlArray);
 		$backUrl="/".$urlArray[$urlCount-2];
 		$backUrl.="/".$urlArray[$urlCount-1];
 		//print $urlArray[$urlCount-1];
 		if(preg_match("/login|logout/",$urlArray[$urlCount-1])){
 			//ログイン、ログアウト
-		}else if(preg_match("/Users/",$urlArray[$urlCount-1])){
+		}else if(preg_match("/Users | users/",$urlArray[$urlCount-1])){
 
-			$this->Session->write('backUrl','/users/index');
+			$this->Session->write('backUrl',$Nexturl.'/User/');
 		}else if(preg_match("/goods_detail/",$urlArray[$urlCount-2])){
 			$this->Session->write('backUrl','/'.$urlArray[$urlCount-3].$backUrl);
 		}else{
 			//それ以外のページ
 			$this->Session->write('backUrl',$backUrl);
+			
 
 		}
 		//print($_SERVER["REQUEST_URI"]);

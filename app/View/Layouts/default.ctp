@@ -37,8 +37,10 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
 		echo $this->fetch('css');
 echo $this->Html->script( 'jquery-1.9.1.min', array('inline'=> true));
 		echo $this->fetch('script');
-	?>
-    
+        echo $this->Html->css('bootstrap.min');
+        echo $this->Html->css('bootstrap-responsive.min');
+    ?>
+
 </head>
 <body>
 	<div id="container">
