@@ -79,6 +79,12 @@ label{
 		width: 75%;
 	}
 }
+.margin20{
+	margin: 50px 0 50px 0;
+}
+footer{
+	margin: 15px 0 0 0;
+}
 /*	COLUMN WIDTH ON DISPLAYS +768px 
 You might need to play with media queries here to suite your design. */
 @media ( min-width : 768px ) {

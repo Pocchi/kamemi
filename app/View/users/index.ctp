@@ -6,13 +6,13 @@
 				<?php echo $this->Html->image('topimage.jpg', array('alt' => 'kamemiイメージ','id'=>'')); ?>
 			</aside>
 			<article class="col span_14" id="text1">
-				<?php echo $this->Html->image('kamemirogo.png', array('alt' => 'kamemiロゴ2','id'=>'kamemilogo')); ?>
+				<?php echo $this->Html->image('kamemirogo.png', array('alt' => 'kamemiロゴ2','id'=>'kamemilogo_mini2')); ?>
 				<span id="te1">は<br /></span>
 				
 				<span id="te2">
 				カメ好きのための<br />
 				カメだらけのブランドです。</span>
-				<a href="#">>>商品を見る</a>
+				<?php echo $this->Html->link('>>商品を見る',array('controller'=>'goods','action'=>'goods_list')); ?>
 			</article>
 		</main>
 		<div id="sub" role="main" class="row gutters subcontents">
@@ -37,6 +37,23 @@
 			</div>
 			<div class="subcon col span_18 ">
 				<h2>商品情報</h2>
+				<div class="news">
+					<ul>
+						<li>
+							<span class="newsDay">2月3日(火)</span><br />
+							<span class="newsIn">エコバッグM登場！</span>
+						</li>
+						<li>
+							<span class="newsDay">2月1日(日)</span><br />
+							<span class="newsIn">エコバッグS（べっこう）登場！</span>
+						</li>
+						<li>
+							<span class="newsDay">1月29日(木)</span><br />
+							<span class="newsIn">エコバッグS（プレーン）登場！</span>
+						</li>
+					</ul>
+				</div>
+				
 			</div>
 			<div class="subcon col span_17 ">
 				<h2>-</h2>

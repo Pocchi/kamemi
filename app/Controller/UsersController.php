@@ -7,7 +7,7 @@ class UsersController extends AppController{
 	public $components = array('Page');
 	var $name = 'Users';
 	//	var $uses = array('Kamemi', 'login');
-	public $helpers=array('Html','Form');
+	public $helpers=array('Html','Form','BootstrapForm');
 	
 
 	public function index(){
@@ -76,8 +76,11 @@ class UsersController extends AppController{
 					//backUrlセッション取得
 					if($this->Session->check('backUrl')){
 						$backUrl=$this->Session->read('backUrl');
+					
 					}
 					$this->Session->setFlash('ログインしました', 'default', array('class' => 'flash_login'));
+					$backUrl=str_replace("kamemi/","",$backUrl);
+					//print $backUrl;
 					$this->redirect($backUrl);
 				}
 			}else{
@@ -108,28 +111,26 @@ class UsersController extends AppController{
 		//
 		if($this->Session->check('user')){
 			$inputId=$this->Session->read('user.userId');
-			$userState=$this->Session->read('user.userState');
+			$userState=$this->Session->read('user.userName');
 			//send問い合せ
-			//if(isset($this->request->data['send_input'])){
-				//if($this->request->data['send_input']==true){
-					$value=$this->Send->find(
-						'first',
-						array('conditions'=>array(
-							'and'=>array(
-								'f_cust_id'=>$inputId
-							)
-						)));
-					//print_r($value);
-					$useArray[0]=$value["Send"]["f_send_name"];
-					$useArray[1]=$value["Send"]["f_send_tel"];
-					$useArray[2]=$value["Send"]["f_send_post"];
+			$value=$this->Send->find(
+				'first',
+				array('conditions'=>array(
+					'and'=>array(
+						'f_cust_id'=>$inputId,
+					)),
+					'order' => array('Send.f_send_id DESC'),
+				));
+			print_r($value);
+
+			if(isset($value)){
+			$useArray[0]=$value["Send"]["f_send_name"];
+			$useArray[1]=$value["Send"]["f_send_tel"];
+			$useArray[2]=$value["Send"]["f_send_post"];
 			$useArray[3]=$value["Send"]["f_send_address"];
 			$useArray[4]=$value["Send"]["f_send_mail"];
 			$useArray[5]=$value["Send"]["f_send_dm"];
-			
-
-				//}
-			//}
+			}
 		}else{
 			//連番取得(ユーザID)
 			$nextid=null;
@@ -216,7 +217,8 @@ class UsersController extends AppController{
 				 and
 				 a_orders.f_order_id=orders_details.f_order_id
 				 and
-				 a_orders.f_cust_id="'.$userId.'"'
+				 a_orders.f_cust_id="'.$userId.'"
+				 order by f_order_datetime desc'
 			);
 			//print_r($historyArray);
 			$this->set('history',$historyArray);

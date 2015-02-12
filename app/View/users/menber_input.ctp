@@ -6,11 +6,11 @@
 		<main>
 <?php
 
-echo $this->Form->create('users', array('controller'=>'user','action'=>'menber_complete','class'=>'BootstrapForm'));
+echo $this->Form->create('users', array('controller'=>'user','action'=>'menber_complete'));
 echo $this->Form->input('f_cust_id',array('type'=>'hidden','value'=>$inputId));
 echo $this->Form->input('f_cust_name',array('label' => '名前','value'=>$useArray[0]));
-echo $this->Form->input('f_cust_tel',array('label' => '電話番号','value'=>$useArray[1]));
-echo $this->Form->input('f_cust_post',array('label' => '郵便番号','value'=>$useArray[2]));
+echo $this->Form->input('f_cust_tel',array('label' => '電話番号','value'=>$useArray[1],'class'=>'input01'));
+echo $this->Form->input('f_cust_post',array('label' => '郵便番号','value'=>$useArray[2],'class'=>'input01'));
 echo $this->Form->input('f_cust_address',array('label' => '住所','value'=>$useArray[3]));
 echo $this->Form->input('f_cust_mail',array('label' => 'メールアドレス','value'=>$useArray[4]));
 echo $this->Form->input('f_cust_pass',array('label' => 'パスワード'));
@@ -18,16 +18,17 @@ echo $this->Form->input( 'f_cust_dm', array(
 	'type' => 'checkbox',
 	'checked' => $useArray[5],    // 初期表示で選択させる場合
 	'label' => 'チェックをつけるとDMが郵送されます',    // チェックボックスのラベル
-	//'hiddenField' => false        // div親要素の有無(true/false)
+	'hiddenField' => 'true'        // div親要素の有無(true/false)
 ));
-echo $this->Form->button('reset',array('type'=>'button','id'=>'reset'));
-echo $this->Form->button('確認',array('type'=>'button','id'=>'mordal_open'));
+//echo $this->Form->button('reset',array('type'=>'button','id'=>'reset'));
+echo $this->Form->button('確認',array('type'=>'button','id'=>'mordal_open','class'=>'button04'));
+
 ?>
 				</div>
 
 <!--モーダルウインドウ Start-->
 <div id="modal_back">
-	<?php echo $this->Html->image("black_50.png", array('alt' => '','id'=>'','class'=>'closeButton')); ?>
+	<?php echo $this->Html->image("black_50.png", array('alt' => '','id'=>'display_in','class'=>'closeButton fixed')); ?>
 
 </div>
 <div id="modal">

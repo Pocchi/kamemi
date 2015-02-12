@@ -19,9 +19,9 @@
 	</div><!-- left end -->
 
 <div id="right" class="col span_20"><!-- right start -->
-	<div id="right_menber">
+	<div id="right_menber" class="right_box">
 		<h2>会員情報</h2>
-		<dl>
+		<dl class="row">
 			<dt>名前</dt>
 			<dd id="com_name"><?php echo $user["User"]["f_cust_name"]; ?></dd>
 			<dt>電話番号</dt>
@@ -39,7 +39,7 @@
 		</dl>
 		<? echo $this->Form->button('会員情報変更',array('type'=>'button','id'=>'mordal_open')); ?>
 	</div>
-	<div id="right_buy_history">
+	<div id="right_buy_history" class="right_box">
 		<h2>購入履歴</h2>
 		<?php
 	$cnt=0;

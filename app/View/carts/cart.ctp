@@ -73,10 +73,9 @@ $goodsPrice+=$cart['Good']['f_goods_price'];
 			echo $this->Form->end(
 				array(
 					'label'=>'購入する',
-					'div'=>array(
-						'class'=>'orderSubmit',
-					)
+					'class'=>'orderSubmit'
 				)
+
 			);
 			?>
 		</div><!-- orderbox end -->
@@ -88,7 +87,7 @@ $goodsPrice+=$cart['Good']['f_goods_price'];
 				</div>
 	<?php
 		}
-echo $this->Html->link('商品リストへ',array('controller'=>'goods','action'=>'goods_list')); 
+echo $this->Html->link('商品リストへ',array('controller'=>'goods','action'=>'goods_list'), array('class'=>'button03'));
 		
 		?>
 	

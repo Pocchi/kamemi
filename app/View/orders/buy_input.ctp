@@ -18,6 +18,7 @@ if(isset($flag)){
 			echo $this->Form->create('login',array(
 				'type'=>'post',
 				'url'=>'/users/login'
+				,'class'=>'loginform'
 			));
 			echo $this->Form->input('f_cust_mail',array('label' => 'メールアドレス'));
 			echo $this->Form->input('f_cust_pass',array('label' => 'パスワード','type'=>'password'));
@@ -33,8 +34,8 @@ if(isset($flag)){
 	));
 	echo $this->Form->input('f_cust_id',array('type'=>'hidden','value'=>$userId));
 				echo $this->Form->input('f_cust_name',array('label' => '名前','value'=>$auto['User']['f_cust_name']));
-	echo $this->Form->input('f_send_tel',array('label' => '電話番号','value'=>$auto['User']['f_cust_tel']));
-	echo $this->Form->input('f_send_post',array('label' => '郵便番号','value'=>$auto['User']['f_cust_post']));
+	echo $this->Form->input('f_send_tel',array('label' => '電話番号','value'=>$auto['User']['f_cust_tel'],'class'=>'input01'));
+	echo $this->Form->input('f_send_post',array('label' => '郵便番号','value'=>$auto['User']['f_cust_post'],'class'=>'input02'));
 	echo $this->Form->input('f_send_address',array('label' => '住所','value'=>$auto['User']['f_cust_address']));
 	echo $this->Form->input('f_send_mail',array('label' => 'メールアドレス','value'=>$auto['User']['f_cust_mail']));
 	//echo $this->Form->input('f_cust_pass',array('label' => 'パスワード'));
@@ -45,8 +46,8 @@ if(isset($flag)){
 		'id'=>'check',
 		//  'div' => false        // div親要素の有無(true/false)
 	));
-	echo $this->Form->button('リセット',array('type'=>'button','id'=>'reset'));
-	echo $this->Form->button('確認',array('type'=>'button','id'=>'mordal_open'));
+	//echo $this->Form->button('リセット',array('type'=>'button','id'=>'reset','class'=>'resetbutton'));
+	echo $this->Form->button('確認',array('type'=>'button','id'=>'mordal_open','class'=>'orderSubmit margin00'));
 	}
 ?>
 

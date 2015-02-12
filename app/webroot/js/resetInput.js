@@ -28,10 +28,10 @@ $(function(){
 					$('#check_').val("0");
 				}
 				var check=$("#check_").val();
-				if(check=="1"){
+				if(check=="1" || check=="希望する"){
 					$('#'+comArray[i]).html("希望する");
 					console.log("1");
-				}else{
+				}else if(check=="0"){
 					$('#'+comArray[i]).html("希望しない");
 					console.log("2");
 				}

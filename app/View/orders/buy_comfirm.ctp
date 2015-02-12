@@ -75,27 +75,28 @@ print $sendId;
 				<dt>メール</dt>
 				<dd id="com_mail"><?php echo $send['f_send_mail']; ?></dd>
 				<dt>DM希望</dt>
-				<dd id="com_dm"><?php echo $send['f_send_dm']; ?></dd>
+				<dd id="com_dm"><?php echo $dm_flag; ?></dd>
 			</dl>
 			<?php
 
 echo $this->Form->hidden('cart',array('value'=>'true'));
-echo $this->Form->button('請求先を入力する',array('type'=>'button','id'=>'mordal_open'));
+echo $this->Form->button('請求先を入力する',array('type'=>'button','id'=>'mordal_open','class'=>"button02"));
 ?>
 			<!--モーダルウインドウ Start-->
 			<div id="modal_back">
-				<?php echo $this->Html->image("black_50.png", array('alt' => '','id'=>'','class'=>'closeButton')); ?>
+				<?php echo $this->Html->image("black_50.png", array('alt' => '','id'=>'display_in','class'=>'closeButton')); ?>
 
 			</div>
 			<div id="modal">
 				<a href="#" class="close closeButton">×</a>
 				<h2>請求先入力</h2>
-				<p>こちらで入力されたメールアドレスに請求が届きます。</p>
+				<p>こちらのメールアドレスに<br />請求が届きます。</p>
+				<hr />
 
 				<?php
 echo $this->Form->input('f_order_mail',array('label' => 'メールアドレス','value'=>$send['f_send_mail']));
 echo $this->Form->input('f_order_mail_confirm',array('label' => 'メールアドレス(再)','value'=>$send['f_send_mail']));
-						echo $this->Form->button('リセット',array('type'=>'button','id'=>'reset2'));
+						//echo $this->Form->button('リセット',array('type'=>'button','id'=>'reset2','class'=>"resetbutton"));
 echo $this->Form->end('購入確定する');
 				?>
 			</div>

@@ -90,5 +90,14 @@ class EmailConfig {
 		//'charset' => 'utf-8',
 		//'headerCharset' => 'utf-8',
 	);
+	//gmail
+	public $gmail = array(
+		'host' => 'ssl://smtp.gmail.com',
+		'port' => 465,
+		'username' => 'm.axolotl.tr@gmail.com', // ユーザ名
+		'password' => 'nanas1r0',           // パスワード
+		'transport' => 'Smtp',
+		//'tls' => true
+	);
 
 }

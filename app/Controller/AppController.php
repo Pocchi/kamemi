@@ -37,7 +37,6 @@ class AppController extends Controller {
 		'Form' => array('className' => 'TwitterBootstrap.BootstrapForm'),
 		'Paginator' => array('className' => 'TwitterBootstrap.BootstrapPaginator'),
 	);
-	//public $layout = 'TwitterBootstrap.default';
 
 	//サニタイジング
 	function __sanitize() {
@@ -46,19 +45,7 @@ class AppController extends Controller {
 	}
 
 	public function beforeFilter() {
-        //bootstrap
-        $this->Session->setFlash(__('Alert notice message testing...'), 'alert', array(
-            'plugin' => 'TwitterBootstrap',
-        ), 'notice');
-        $this->Session->setFlash(__('Alert success message testing...'), 'alert', array(
-            'plugin' => 'TwitterBootstrap',
-            'class' => 'alert-success'
-        ), 'success');
-        $this->Session->setFlash(__('Alert error message testing...'), 'alert', array(
-            'plugin' => 'TwitterBootstrap',
-            'class' => 'alert-error'
-        ), 'error');
-        //
+
 		$userId="C000000000";
 		$userName="ゲスト";
 		$loglink="ログイン";
@@ -85,7 +72,7 @@ class AppController extends Controller {
 		$this->set('logaction',$logaction);
 		$this->set('menberlink',$menberlink);
 		$this->set('menberaction',$menberaction);
-		
+
 		//
 		//pageurl取得
 		$url=Router::url();
@@ -109,7 +96,7 @@ class AppController extends Controller {
 		}else{
 			//それ以外のページ
 			$this->Session->write('backUrl',$backUrl);
-			
+
 
 		}
 		//print($_SERVER["REQUEST_URI"]);
@@ -120,7 +107,8 @@ class AppController extends Controller {
 		//print $urlArray[$urlCount-1];
 		$histry="";
 		$lastUrl=$urlArray[$urlCount-1];
-		if($lastUrl !="Users"&&$lastUrl!="index"){
+		$secandUrl=$urlArray[$urlCount-2];
+		if($lastUrl !="Users"&&$lastUrl!="index"&&$lastUrl!="buy_complete"&&$secandUrl!="goods_detail"&&$secandUrl!="Carts"){
 			$histry="<a href='javascript:history.back();' class='histry'>前のページへ戻る</a>";
 		}
 		$this->set("histry",$histry);

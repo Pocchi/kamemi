@@ -25,6 +25,7 @@ label{
 	margin: 3px 0px;
 	font-family: 'hannari';
 	text-rendering: optimizeLegibility;
+	float: left;
 }
 #ck_box{
 	text-align: left;
@@ -38,4 +39,17 @@ main form input{
 #bt_box{
 	width: 200px;
 	margin: 0 auto;
+}
+.submit input{
+	background: #000;
+	width: 200px;
+	border: 1px solid #000;
+	border-radius: 2px;
+	padding: 2px;
+	color: #fff;
+	cursor: pointer;
+}
+.submit input:hover{
+	background: #ccc;
+	color: #555;
 }

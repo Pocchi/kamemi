@@ -2,6 +2,7 @@
 	width: 90%;
 	margin: 10px auto;
 	border: 1px solid #000;
+	background: #fff;
 }
 .listimg{
 }
@@ -137,19 +138,63 @@ You might need to play with media queries here to suite your design. */
 	.span_20 { width: 80%; }
 	.gutters .span_20 { width: 80%; }
 }
-/* button */
 /* menber.css */
 #menber{
-	background: #cc0;
+	background: #cca;
 	cursor: pointer;
 }
 #history{
 	cursor: pointer;
 }
 #right_menber{
-	background: #ccc;
+	background: #cca;
 }
 #right_buy_history{
-	background: #cc0;
+	background: #cca;
 	display: none;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+}
+.right_box{
+	padding:10px;
+	margin:10px;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+}
+dl{
+	width: 100%;
+}
+dt{
+	background: #555;
+	width: 30%;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+	padding: 3px;
+	float:left;
+	border: 1px solid #444;
+	height: 30px;
+	
+}
+dd{
+	background: #fff;
+	color: #000;
+	width: 70%;
+	height: 30px;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+	padding: 3px;
+	float:left;
+	border: 1px solid #444;
+}
+h2{
+	letter-spacing: 2px;
+	background: #333;
+	padding: 10px;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
 }

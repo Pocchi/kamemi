@@ -1,6 +1,9 @@
 <?php
 App::uses('AppController','Controller');
 App::import('Vendor','chainfunc');
+App::import('Vendor','check_flag');
+//App::import('Vendor','mailsend');
+App::uses( 'CakeEmail', 'Network/Email');
 class OrdersController extends AppController{
 	public $components = array('Page');
 	var $name = 'Orders';
@@ -55,7 +58,16 @@ class OrdersController extends AppController{
 		if(isset($this->request->data['send'])){
 			$sendArray=$this->request->data['send'];
 			//print_r($sendArray);
+			//print $sendArray['f_send_dm'];
+			//$value=check_flag($sendArray['f_send_dm']);
+			$value;
+			if($sendArray['f_send_dm']=="1"){
+				$value="希望する";
+			}else{
+				$value="希望しない";
+			}
 			$this->set('send',$sendArray);
+			$this->set('dm_flag',$value);
 
 			//連番取得
 			$countid=$this->Send->findLastId('f_send_id','sends','Send');
@@ -83,6 +95,7 @@ class OrdersController extends AppController{
 				)
 			);
 			$this->set('sendId',$sendId);
+			$this->set('f_cust_name',$sendArray['f_cust_name']);
 			//送料
 			$sendMoney=$this->Shop_maintenance->find(
 				'first',
@@ -211,8 +224,61 @@ class OrdersController extends AppController{
 			$i++;
 			endforeach;
 			//カートセッション削除
-
 			$this->Session->delete('cart');
+			//
+			//メール送信
+			//
+			$sql_email="select
+				 goods.f_goods_name as '商品名',
+				 orders_details.f_order_detail_num as '数量',
+				 orders_details.f_order_detail_price as '価格'
+				 from orders_details,goods
+				 where orders_details.f_goods_id=goods.f_goods_id
+				 and orders_details.f_order_id='".$orderId."'";
+
+			$sql_email2="select
+				 sends.f_send_name as '送付先名',
+				 sends.f_send_post as '郵便番号',
+				 sends.f_send_address as '住所',
+				 sends.f_send_tel as '電話番号'
+				 from a_orders,sends
+				 where a_orders.f_send_id=sends.f_send_id
+				 and a_orders.f_order_id ='".$orderId."'";
+			$sql_email3="select
+				users.f_cust_name as '購入者名'
+				from a_orders,users
+				where a_orders .f_cust_id=users.f_cust_id
+				and a_orders.f_order_id='".$orderId."'";
+			$send_email = $this->A_order->query($sql_email);
+			$send_email2 = $this->A_order->query($sql_email2);
+			$send_email3 = $this->A_order->query($sql_email3);
+			//print_r($send_email);
+			//print_r($send_email2);
+			//print_r($send_email3);
+			$orderprice=$orderArray['f_order_price'];
+			$images=IMAGES."topimage.jpg";
+			//
+			//$images = array('file' => $imagepath,
+			//						'mimetype' => mime_content_type($imagepath),
+			//						'contentId' => "image01"
+			//					   );
+
+			$mail_to=$orderArray['f_order_mail'];
+			$mail_subject="注文番号【".$orderId."】自動送信メール";
+			$email = new CakeEmail('gmail');                        // インスタンス化
+			$email->from( array( 'm.axolotl.tr@gmail.com' => 'Kamemiブランドサイト'));  // 送信元
+			$email->attachments($images);
+			$email->to($mail_to);                      // 送信先
+			$email->subject($mail_subject);                      // メールタイトル
+			$email->emailFormat('html');
+			// フォーマット
+			$email->template('templete');               // テンプレートファイル
+			$email->viewVars( compact( 'name','send_email','send_email2','send_email3','orderprice'));             // テンプレートに渡す変数
+
+			$email->send();                             // メール送信
+
+
+
 		}
 	}
 

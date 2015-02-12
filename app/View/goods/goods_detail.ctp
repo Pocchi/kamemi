@@ -40,11 +40,11 @@ echo $this->Form->hidden('goodsid',array('value'=>$goodstxt['Good']['f_goods_id'
 	echo $this->Form->end(
 		array(
 			'label'=>'カートへ入れる',
-			'div'=>array(
-				'class'=>'submit',
-			)
+			
+			'class'=>'orderSubmit submit02'
+			
 		)
 	);
 ?>
 
-<?php echo $this->Html->link('商品一覧へ戻る',array('controller'=>'Goods','action'=>'goods_list')); ?>
+<?php echo $this->Html->link('商品一覧へ戻る',array('controller'=>'Goods','action'=>'goods_list'),array('class'=>'button03 margin20')); ?>

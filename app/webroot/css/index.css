@@ -16,12 +16,6 @@ article {
 	font-family: 'hannari';
 	font-size: 1.2em;
 }
-#text1 #te1{
-	margin: 89px 100px 15px -40px;
-	position: relative;
-	z-index: 100;
-
-}
 #text1 #te2{
 	display: block;
 	width: 250px;
@@ -104,6 +98,16 @@ aside {
 	.firstco{
 		border-top: dotted 1px #000;
 	}
+
+	#kamemilogo_mini2{
+
+	}
+	#text1 #te1{
+		margin: 89px 100px 15px -40px;
+		position: relative;
+		z-index: 10;
+
+	}
 }
 @media ( min-width : 768px ) {
 	/*pc*/
@@ -160,7 +164,15 @@ h1{
 .box2{
 	background: #aaa;
 }
+#kamemilogo_mini2{
+	
+}
+#text1 #te1{
+	margin: -30px 100px 15px 190px;
+	position: relative;
+	z-index: 10;
 
+}
 
 /* 上書き */
 @media ( min-width : 768px ) {

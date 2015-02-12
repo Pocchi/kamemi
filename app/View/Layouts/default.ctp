@@ -35,38 +35,51 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
 		echo $this->Html->css('common');
 		echo $this->fetch('meta');
 		echo $this->fetch('css');
-echo $this->Html->script( 'jquery-1.9.1.min', array('inline'=> true));
+		echo $this->Html->script( 'jquery-1.9.1.min', array('inline'=> true));
+		echo $this->Html->script( 'nav', array('inline'=> true));
 		echo $this->fetch('script');
-        echo $this->Html->css('bootstrap.min');
-        echo $this->Html->css('bootstrap-responsive.min');
-    ?>
-
+	?>
+    
 </head>
 <body>
 	<div id="container">
 		<div id="userarea">
 		</div>
 		<div class="container row">
+
+			<span id="hamburger-fix"></span>
 			<header role="banner" class="row clearfix">
+				
 				<?php echo $this->Html->link($this->Html->image('kamemirogo.png'),array('controller'=>'Users','action'=>'index'),array('escape'=>false,'id'=>'kamemilogo'));?>
+				
+				<?php echo $this->Html->link($this->Html->image('kamemirogo_mini.png'),array('controller'=>'Users','action'=>'index'),array('escape'=>false,'id'=>'kamemilogo_mini'));?>
 				<div id="ulcopy">
 				
-					<span>ねぼすけホシガメブランド</span>
-					<ul id="navi">
-						<li><?php echo $this->Html->link('トップ',array('controller'=>'Users','action'=>'index')); ?></li>
+					<span class="copy">ねぼすけホシガメブランド</span>
+					<span id="hamburger-botton"></span>
+
+					<div id="nav_box">
+
+						<div id="name_box01">
+							<p id="nameid"><?php echo $userId; ?></p>
+							<p id="namename"><?php echo $userName."さん"; ?></p>
+						</div>
+					<ul id="navi row">
+						<li><?php echo $this->Html->link('トップ',array('controller'=>'Users','action'=>'index'),array('class'=>'li_01')); ?></li>
 						<li><?php echo $this->Html->link('商品',array('controller'=>'goods','action'=>'goods_list')); ?></li>
 						<li><?php echo $this->Html->link($loglink,array('controller'=>'users','action'=>$logaction)); ?></li>
 						<li><?php echo $this->Html->link($menberlink,array('controller'=>'users','action'=>$menberaction)); ?></li>
 						<li><?php echo $this->Html->link('カート',array('controller'=>'carts','action'=>'cart')); ?></li>
 					</ul>
+					</div>
 				</div>
-
-				<div id="nameid"><?php echo $userId; ?></div>
-				<div id="namename"><?php echo $userName."さん"; ?></div>
+				<div id="name_box02">
+					<p id="nameid"><?php echo $userId; ?></p>
+					<p id="namename"><?php echo $userName."さん"; ?></p>
+				</div>
 			</header>
 			
 		<div id="content">
-
 			<?php echo $this->Session->flash(); ?>
 			<?php echo $this->fetch('content'); ?>
 			<?php echo $histry; ?>
@@ -79,7 +92,7 @@ echo $this->Html->script( 'jquery-1.9.1.min', array('inline'=> true));
 		</div>
 <div style="bacKground: black;">
 <?php
-echo $this->element('sql_dump');
+//echo $this->element('sql_dump');
  ?>
 	<script>
 		$(function(){

@@ -4,7 +4,8 @@
 				<?php
 
 echo $this->Form->create('login');
-echo $this->Form->input('f_cust_mail',array('label' => 'メールアドレス'));
+echo $this->Form->input('f_cust_mail',array('label' => 'メールアドレス','class'=>''));
+
 echo $this->Form->input('f_cust_pass',array('label' => 'パスワード','type'=>'password'));
 					echo $this->Form->end('ログイン');
 				?>

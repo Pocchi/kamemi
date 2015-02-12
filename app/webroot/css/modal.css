@@ -31,7 +31,10 @@
   height: 100%;
   top: 0;
   left: 0;
+	opacity: 0.3;
+	background: #ddd;
 }
+
 #modal a.close{
   display: block;
   position:absolute;
